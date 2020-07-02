@@ -15,13 +15,15 @@ TEST_PRIVATE_PROFILE_URL = r"https://www.airbnb.com.au/users/show/7468324"
 # current issue is CAPTCHA when logging in.
 # otherwise everything works fine
 
-if __name__ == "__main__":
-
+def perform_login(url):
+    """Opens web browser to login to airbnb using a dummy email and password.
+       then returns the html for the page after login"""
     driver = webdriver.Firefox()
-    driver.get(TEST_PRIVATE_PROFILE_URL)
+    driver.get(url)
 
-    useEmailLogin = driver.find_element_by_class_name("_bc4egv")
-    ActionChains(driver).click(useEmailLogin).perform()
+    # class name corresponds to button for email login
+    useEmailLoginElem = driver.find_element_by_class_name("_bc4egv")
+    ActionChains(driver).click(useEmailLoginElem).perform()
 
     idLoginElem = driver.find_element_by_id("email")
     idLoginElem.clear()
@@ -33,13 +35,27 @@ if __name__ == "__main__":
 
     passwordLoginElem.send_keys(Keys.ENTER)
 
+    time.sleep(10) #short delay to let html load
+
+    page_html = driver.page_source
+    driver.quit()
+
+    return page_html
+
+
+if __name__ == "__main__":
+
     # wait a while to load the page
     time.sleep(10)
 
-    html = driver.page_source
+    html = perform_login(TEST_PRIVATE_PROFILE_URL)
 
     print("n_reviews from this site:")
     print(get_input_reviews.get_input_reviews_html(html))
 
     # assert "No results found." not in driver.page_source
-    driver.quit()
+    # driver.quit()
+
+    #id = "recaptcha-audio-button" type button
+    # id = "recaptcha-anchor"
+    # download link <a> = "rc-audiochallenge-tdownload-link"

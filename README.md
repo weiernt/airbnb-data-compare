@@ -6,10 +6,10 @@ Uses data openly obtained from http://insideairbnb.com/get-the-data.html. Link n
 Script sums up the unique host_ids' total reviews on each unique listing id, then sorts this list of tuples. The input user from the input url is then compared to this sorted list to see how the user's number of reviews stands relative to the list.
 
 Note that the terminal has to be in the same directory as main.py
-
+Also note that repeated uses involving logins will eventually require the completion of CAPTCHA, which this script cannot do.
 
 # Usage
-```
+```py
 py main.py https://www.airbnb.com/users/show/xxxxxxxxxxxxxx
 ```
 Where `xxxxxxxx` represents the airbnb user profile ID.
