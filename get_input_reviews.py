@@ -30,8 +30,32 @@ def get_input_reviews(url):
 
 
     # should always be able to find the regex in the website
-    raise ValueError("Failed to find reviews regex, likely used wrong url or airbnb.com changed")
-    return 
+    raise ValueError("Failed to find reviews regex, likely used wrong url or airbnb.com changed") 
+
+def get_input_reviews_html(html_source):
+    regex = re.compile(r"[0-9]+ reviews")
+    n_reviews = 0
+
+    soup = BeautifulSoup(html_source, "html.parser")
+    for entry in soup.findAll("div", {"class": "_czm8crp"}):
+        try:
+            # print(entry.contents[0].text)
+            m = regex.match(entry.contents[0].text)
+
+            # m.group() == True means found a match for regex
+            if m.group():
+                # print(m)
+                n_reviews = int(m.group().split()[0])
+                print(f"n_reviews = {n_reviews} ")
+                return n_reviews
+        except:
+            # entry.contents[0] does not exist
+            pass
+
+    # should always be able to find the regex in the website
+    raise ValueError("Failed to find reviews regex, likely used wrong url or airbnb.com changed") 
+
+
 
 
 if __name__ == "__main__":

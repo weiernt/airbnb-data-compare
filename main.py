@@ -28,9 +28,7 @@ if __name__ == "__main__":
         with open(r"./local.csv", "w", encoding="utf-8") as localcsv:
             localcsv.write(csv_http.read().decode("utf-8"))
 
-
-    # f = open(r"./airbnb_data/listings2.csv", newline='', encoding="utf-8")
-    # f = open(csv_http, newline='', encoding="utf-8")
+    # remember to always open, read, write with explicit de/encoding="utf-8"
 
     f = open(r"./local.csv", encoding="utf-8")
     csvfile = csv.DictReader(f)
