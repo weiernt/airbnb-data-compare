@@ -1,10 +1,12 @@
 # Airbnb-data-compare
+Outputs relative standing of user compared to others in Melbourne.
 
-Compares relative standing of airbnb user profiles, by comparing their number of reviews, available publically. This is compared to the data obtained from http://insideairbnb.com/ . Currently uses the May 2020 dataset.
+Uses data openly obtained from http://insideairbnb.com/get-the-data.html. Link needs to be manually changed if data is updated, currently using May 2020 dataset. This dataset will be accessed with a http request, and saved locally in the same directory as main.py, and will be saved as local.csv.
 
-This only compares with data from listings in Melbourne, Australia.
+Script sums up the unique host_ids' total reviews on each unique listing id, then sorts this list of tuples. The input user from the input url is then compared to this sorted list to see how the user's number of reviews stands relative to the list.
 
-Note that requires the current working directory to be in the main folder (same directory as `main.py`) to work properly.
+Note that the terminal has to be in the same directory as main.py
+
 
 # Usage
 ```
