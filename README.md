@@ -20,3 +20,6 @@ Where `xxxxxxxx` represents the airbnb user profile ID.
 - Selenium (3.141.0)
 
 Versions listed at time of building
+
+# Issues
+Currently, can't access certain private profiles on airbnb. Using Selenium with a dummy email works temporarily, as will eventually have to do CAPTCHA on login page.
